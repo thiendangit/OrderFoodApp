@@ -1,56 +1,60 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyApp extends StatefulWidget {
-  String name;
-  int old;
+class MyApp extends StatelessWidget {
+  final List<String> items;
 
-  MyApp({required this.name, required this.old});
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return MyAppStateFull();
-    throw UnimplementedError();
-  }
-}
-
-class MyAppStateFull extends State<MyApp> {
-  late String text = 'PlayFootBall';
-  final _textFieldController = TextEditingController();
+  const MyApp({Key? key, required this.items}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-        title: "HomeScreen",
-        home: Scaffold(
-            body: SafeArea(
-          child: Center(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+    void _onPressShowBottomSheet() {
+      showModalBottomSheet(
+          context: context,
+          builder: (BuildContext context) {
+            return Column(children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: TextField(
-                  controller: _textFieldController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
+                height: 400,
+                color: Colors.white,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const Text('BottomSheet'),
+                      ElevatedButton(
+                          child: const Text('Close BottomSheet'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          })
+                    ],
                   ),
-                  onChanged: (textValue) {
-                    this.setState(() {
-                      text = textValue;
-                    });
-                  },
                 ),
+              )
+            ]);
+          });
+    }
+    const title = 'Long List';
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("MyApp"),
+        ),
+        body: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: FlutterLogo(size: 56.0),
+              title: Text('Two-line ListTile'),
+              subtitle: Text('Here is a second line'),
+              trailing: IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  _onPressShowBottomSheet();
+                },
               ),
-              Text(
-                "My Hobby is $text",
-                style: TextStyle(fontSize: 15),
-                textDirection: TextDirection.ltr,
-              ),
-            ],
-          )),
-        )));
+            );
+          },
+        ),
+    );
   }
 }

@@ -2,5 +2,9 @@ import 'package:flutter/material.dart';
 import 'MyApp.dart';
 
 void main() {
-  runApp(MyApp(name: "Thien Dang", old: 23));
-}
+  runApp(
+      MaterialApp(
+          title: "Food App",
+          home:
+          MyApp(items: List<String>.generate(10000, (i) => 'Item $i'))));
+  }
