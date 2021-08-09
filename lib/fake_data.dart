@@ -144,7 +144,7 @@ var FAKE_FOODS = [
       "https://upload.wikimedia.org/wikipedia/commons/5/58/Homemade_hamburger.jpg",
       duration: Duration(minutes: 20),
       complexity: Complexity.Hard,
-      categoryId: 9),
+      categoryId: 8),
   Food(
       name: "Homemade Humburger",
       urlImage:
