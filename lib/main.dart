@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:awesome_app/categories_page.dart';
+import 'package:awesome_app/detail_food_page.dart';
 import 'package:awesome_app/foods_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         FoodsPage.routeName: (context) => FoodsPage(),
+        DetailFoodPage.routeName: (context) => DetailFoodPage(),
       },
       theme: ThemeData(
           primarySwatch: Colors.green,
